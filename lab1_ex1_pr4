@@ -1,9 +1,0 @@
-#Backup the Desktop Program
-#Ahmed Abualsaud - 1107284
-#EE463 - Lab# 1
-#####################################
-clear
-echo "Program to Backup the Desktop Directory"
-cd
-cp -R Desktop Public/BU.tangz
-echo "Done"
