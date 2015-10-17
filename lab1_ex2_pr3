@@ -1,0 +1,91 @@
+#Missing Word Game
+#Ahmed Abualsaud - 1107284
+#EE463 - Lab# 1
+#####################################
+clear
+fruits=(guava grape blueberry melon orange lemon grapefruit blackberry raspberry pineapple fig apple);
+let "fLength = ${#fruits[*]}"
+let "stFlagOut = 1"
+let "foundFlag = 0"
+while [ $stFlagOut -eq 1 ]
+do
+	let "stFlagIn = 1"
+	while [ $stFlagIn -eq 1 ]
+	do
+		echo "-----------------------"
+		echo "|      Welcome        |"
+		echo "| Missing Letter Game |" 
+		echo "|s: to start the game |"
+        	echo "|e: to exit the game  |"
+ 		echo "-----------------------"
+		read -n 1 input 
+		if [ "$input" == "e" ]
+		then
+			let "stFlagOut = 0"
+			let "stFlagIn = 0"
+			echo -e "\nSee you again!"
+		elif [ "$input" == "s" ]
+		then
+			for ((i=1;i<=fLength;i++))
+			do
+				let "rWord = $((RANDOM%12+0))"
+                        	mWord=(${fruits[$rWord]})
+                        	let "wLength = ${#mWord}"
+				let "rLetter = $((RANDOM%$wLength+1))"
+				echo -e -n "\n${mWord::$rLetter-1}""_""${mWord:$rLetter}"
+				mLetter=(${mWord:$rLetter-1:1})
+				echo -e "\nChoice the missing letter from the list? "
+				alph=(a b c d e f g h i j k l m n o p q r s t u v w x y z)
+				echo "${alph[*]}"
+				let "j = 3"
+				echo "--------Level ("$i")--------"
+				let "foundFlag = 0"
+				while [[ $foundFlag -ne 1 && $j -ne 0 ]]
+				do
+					echo "You only have("$j") guess: "
+					read -n 1 sol
+					if [ "$sol" == "$mLetter" ]
+					then
+						echo -e "\nCongradulation!"
+						echo $mWord
+						if [ $i -ne $fLength ]
+						then
+							echo "Next Level!"
+							let "foundFlag = 1"
+						else
+							echo "You did it!"
+							let "stFlagIn = 0"
+							let "stFlagOut = 0"
+							let "foundFlag = 1"
+							let "j = 0"
+							echo ""
+						fi
+					elif [ $j -ne 1 ]
+					then
+						echo -e "\nTry Again!"
+						let "j = j - 1"
+					else
+						echo -e "\nGame Over!"
+						let "stFlagIn = 0"
+						let "stFlagOut = 0"
+						#let "foundFlag = 1"
+						#let "j = 0"
+						let "gameOverFlag = 1"
+						echo ""
+						break;
+					fi
+				done
+				if [ "$gameOverFlag" == "1" ]
+				then
+					break;
+				fi 
+			done
+		else
+			#let "stFlagIn = 0"
+			echo -e "\nError and Try Again!"
+			echo "Please wait!"
+			sleep 2
+			clear
+		fi
+	done	
+done	

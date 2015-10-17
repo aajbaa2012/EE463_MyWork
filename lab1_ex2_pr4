@@ -1,0 +1,30 @@
+#Archived folder inside the Desktop
+#Ahmed Abualsaud - 1107284
+#EE463 - Lab# 1
+#####################################
+clear
+echo "Archived folder inside Desktop!"
+# -z   : Compress archive using gzip program
+# -c/x : Creating archive or Extract Files
+# -v   : Display progress while creating archive
+# -f   : Archive file name
+cd ~/Desktop
+rm -rf home folder1-1-oct-2015.tar.gz
+cd ~/Desktop
+mkdir folder1
+echo "Desktop Directory Before Archived Process"
+ls
+echo ""
+tar -zcvf ~/Desktop/folder1-1-oct-2015.tar.gz ~/Desktop/folder1
+echo "Done Archived"
+rm -rf ~/Desktop/folder1
+cd ~/Desktop
+echo "Desktop After Archived"
+ls
+echo ""
+tar -zxvf ~/Desktop/folder1-1-oct-2015.tar.gz -C ~/Desktop
+cd ~/Desktop
+echo "Desktop After Extrat the Archive folder1"
+ls
+echo ""
+echo "Done Extraction"

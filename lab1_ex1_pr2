@@ -1,0 +1,48 @@
+#Print Trianglr Program
+#Ahmed Abualsaud - 1107284
+#EE463 - Lab# 1
+#####################################
+clear
+echo "Program to Print Trianglr"
+echo "How many level do you want?"
+read level
+let "length = level*2-1"
+let "mid = length/2 + 1"
+let "flagS = 0"
+let "flagE = 0"
+let "st = mid - 1"
+let "end = mid"
+for ((i=1;i<=level;++i))
+do
+	for ((j=1;j<=length;j++))
+	do
+		if [[ $j -eq $mid && $i -eq 1 ]]
+		then
+			echo -n "*"
+		elif [ $i -eq $level ]
+		then
+			echo -n "*"
+		elif [[ $j -lt $mid && $j -ge $st  && $i -gt 1 ]]
+		then
+			echo -n "*"
+			if [ $flagS -eq 0 ]
+			then
+				let "st = st - 1"
+				let "flagS = 1"
+			fi
+		elif [[ $j -ge $mid && $j -le $end && $i -gt 1 ]]
+		then 
+			echo -n "*"
+			if [ $flagE -eq 0 ]
+			then
+				let "end = end + 1"
+				let "flagE = 1"
+			fi
+		else
+			echo -n " "
+		fi
+	done
+	let "flagS = 0"
+	let "flagE = 0"
+	echo
+done

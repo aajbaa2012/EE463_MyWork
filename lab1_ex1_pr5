@@ -1,0 +1,19 @@
+#Simple Two Numbers Calculator Program
+#Ahmed Abualsaud - 1107284
+#EE463 - Lab# 1
+#####################################
+clear
+echo "Program to calculate sum, diff, mult, and div. of two variable"
+echo "Enter the first number: "
+read x1
+echo "Enter the second number: "
+read x2
+echo "Enter the operation (+,-,*,/): "
+read op
+case $op in
++) let "result = x1+x2";;
+-) let "result = x1-x2";;
+/) let "result = x1/x2";;
+*) let "result = x1*x2";;
+esac
+echo "$x1 $op $x2 = $result " 
